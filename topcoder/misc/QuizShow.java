@@ -1,3 +1,5 @@
+package misc;
+
 /**
  * Problem Statement
  *  You are a contestant on a TV quiz show. Throughout the game, you and your 2 opponents have
@@ -26,7 +28,7 @@
  *
  *
  * Definition
- *  Class:    QuizShow
+ *  Class:    misc.QuizShow
  *  Method:    wager
  *  Parameters:    int[], int, int
  *  Returns:    int

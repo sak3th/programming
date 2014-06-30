@@ -1,3 +1,5 @@
+package misc;
+
 /**
  * Problem Statement
  *  Here is an interesting factoid: "On the planet Earth, if there are at least 23 people in a room,
@@ -8,7 +10,7 @@
  *  birthday. See example 0 for further information.
  *
  * Definition
- *  Class: BirthdayOdds
+ *  Class: misc.BirthdayOdds
  *  Method: minPeople
  *  Parameters: int, int
  *  Returns: int

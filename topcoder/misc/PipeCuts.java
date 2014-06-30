@@ -1,3 +1,5 @@
+package misc;
+
 /**
  * Problem Statement
  *  A 100 meter long pipe must be cut in two places. It can only be cut at certain places, where it
@@ -11,7 +13,7 @@
  *  represents the number of meters from the left end of the pipe
  *
  * Definition
- *   Class: PipeCuts
+ *   Class: misc.PipeCuts
  *   Method: probability
  *   Parameters: int[], int
  *   Returns: double

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Sample {
 
     public static void main(String[] args) {
-        String ioFile = Sample.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + Sample.class.getCanonicalName().replace(".", "/");
         solution(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 
