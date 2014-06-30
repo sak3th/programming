@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class TicTacToeTomek {
 
     public static void main(String[] args) {
-        String ioFile = "CodeJam/" + TicTacToeTomek.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + TicTacToeTomek.class.getCanonicalName().replace(".", "/");
         solution(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 

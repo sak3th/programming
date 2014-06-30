@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class MinScalarProduct {
 
     public static void main(String[] args) {
-        String ioFile = "CodeJam/" + MinScalarProduct.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + MinScalarProduct.class.getCanonicalName().replace(".", "/");
         minScalarProduct(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 

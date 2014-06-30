@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class SaveTheUniverse {
 
     public static void main(String[] args) {
-        String ioFile = "CodeJam/" + SaveTheUniverse.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + SaveTheUniverse.class.getCanonicalName().replace(".", "/");
         saveTheUniverse(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 

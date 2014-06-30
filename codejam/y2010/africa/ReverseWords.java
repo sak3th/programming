@@ -11,7 +11,7 @@ import java.util.Stack;
 public class ReverseWords {
 
     public static void main(String[] args) {
-        String ioFile = "CodeJam/" + ReverseWords.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + ReverseWords.class.getCanonicalName().replace(".", "/");
         reverseWords(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 

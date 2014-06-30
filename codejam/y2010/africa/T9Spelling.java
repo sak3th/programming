@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class T9Spelling {
 
     public static void main(String[] args) {
-        String ioFile = "CodeJam/" + T9Spelling.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + T9Spelling.class.getCanonicalName().replace(".", "/");
         t9Spelling(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 

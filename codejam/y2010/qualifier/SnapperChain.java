@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class SnapperChain {
 
     public static void main(String[] args)  {
-        String ioFile = "CodeJam/" + SnapperChain.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + SnapperChain.class.getCanonicalName().replace(".", "/");
         solution(new File(ioFile + ".in"), new File(ioFile + ".out"));
         //System.out.println("" + (-2%2));
     }

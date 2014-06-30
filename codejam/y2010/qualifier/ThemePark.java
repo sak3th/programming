@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ThemePark {
 
     public static void main(String[] args) {
-        String ioFile = "CodeJam/" + ThemePark.class.getCanonicalName().replace(".", "/");
+        String ioFile = "codejam/" + ThemePark.class.getCanonicalName().replace(".", "/");
         maxRevenue(new File(ioFile + ".in"), new File(ioFile + ".out"));
     }
 
