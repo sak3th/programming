@@ -1,9 +1,8 @@
 package datastructures;
 
 public class Queue<E> {
-    Link<E> head;
-    Link<E> tail;
-    int size;
+    private Link<E> head, tail;
+    private int size;
 
     void add(E e) {
         Link<E> l = new Link<E>(e, null);

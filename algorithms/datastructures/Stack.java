@@ -1,8 +1,8 @@
 package datastructures;
 
 public class Stack<E> {
-    Link<E> head;
-    int size;
+    private Link<E> head;
+    private int size;
 
     void push(E e) {
         Link<E> l = new Link(e, head);

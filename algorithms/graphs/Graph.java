@@ -1,18 +1,18 @@
 package graphs;
 
 public class Graph {
-    static final int MAXV = 1000;
 
-    int vertices;
-    int edges;
-    boolean directed;
-    int[] degree = new int[MAXV + 1];
-    int[] parent = new int[MAXV + 1];
-    Adjacent[] adjacents = new Adjacent[MAXV + 1];
+    public int numV;
+    public int numE;
+    public boolean directed;
+    public int[] degree;
+    public Adjacent[] adjacents;
 
-    public Graph(int vertices) {
-        this.vertices = vertices;
-        directed = true;
+    public Graph(int vertices, boolean directed) {
+        this.numV = vertices;
+        this.directed = directed;
+        degree = new int[vertices + 1];
+        adjacents = new Adjacent[vertices + 1];
     }
 
     public void addEdge(int begin, int end, boolean directed) {
@@ -24,16 +24,30 @@ public class Graph {
 
         if (!directed) {
             addEdge(end, begin, true);
-            this.directed = false;
         } else {
-            edges ++;
+            numE++;
+        }
+    }
+
+    public void addEdge(int begin, int end, int weight, boolean directed) {
+        Adjacent adj = new Adjacent();
+        adj.end = end;
+        adj.weight = weight;
+        adj.next = adjacents[begin];
+        adjacents[begin] = adj;
+        degree[begin]++;
+
+        if (!directed) {
+            addEdge(end, begin, weight, true);
+        } else {
+            numE++;
         }
     }
 
     public class Adjacent {
-        int end;
-        int weight;
-        Adjacent next;
+        public int end;
+        public int weight;
+        public Adjacent next;
     }
 }
 

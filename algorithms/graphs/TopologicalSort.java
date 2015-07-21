@@ -1,54 +1,62 @@
 package graphs;
 
-import java.util.HashMap;
 import java.util.Stack;
 
-public class FindingCycles {
+public class TopologicalSort {
 
     public static void main(String[] args) {
-        HashMap<String, Integer> map;
-        Graph g = new Graph(9, false);
-        g.addEdge(1, 2, false);
-        g.addEdge(2, 3, false);
-        g.addEdge(3, 4, false);
-        g.addEdge(4, 5, false);
-        g.addEdge(5, 6, false);
-        g.addEdge(6, 7, false);
-        g.addEdge(7, 8, false);
-        g.addEdge(7, 9, false);
-        //g.addEdge(8, 9, false);
-        FindingCycles fc = new FindingCycles();
-        fc.findCycle(g);
+        Graph g = new Graph(6, true);
+        /*g.addEdge(1, 2, true);
+        g.addEdge(2, 3, true);
+        g.addEdge(3, 4, true);
+        g.addEdge(4, 5, true);
+        g.addEdge(5, 6, true);
+        g.addEdge(6, 7, true);
+        g.addEdge(7, 8, true);
+        g.addEdge(7, 9, true);
+        g.addEdge(8, 9, true);
+        g.addEdge(9, 5, true);*/
+        //g.addEdge(7, 7, true);
+        g.addEdge(1, 2, true);
+        g.addEdge(2, 3, true);
+        g.addEdge(4, 2, true);
+        g.addEdge(4, 5, true);
+        g.addEdge(5, 6, true);
+        g.addEdge(6, 3, true);
+        TopologicalSort ts = new TopologicalSort();
+        ts.topSort(g);
     }
 
-    static void out (String str) {
-        System.out.print(str);
-    }
-
-    public void findCycle(Graph g) {
+    public void topSort(Graph g) {
         initDfs(g);
         for (int i = 1; i <= g.numV; i++) {
             if (!mDiscovered[i]) {
                 idfs(i, g);
             }
+            if (mFinished) return;
         }
-        if (!mFinished) out("No cycle found" + "\n");
+        while (mSorted.size() > 0) {
+            out(mSorted.pop() + " ");
+        }
+        outln("");
     }
 
-    private int[] mParent;
+    private Stack<Integer> mSorted;
     private boolean[] mDiscovered;
     private boolean[] mProcessed;
+    private int[] mParent;
     private int[] mEntryTime;
     private int[] mExitTime;
     private int mTime;
     private boolean mFinished;
 
     private void initDfs(Graph g) {
+        mSorted = new Stack<>();
         mDiscovered = new boolean[g.numV + 1];
         mProcessed = new boolean[g.numV + 1];
+        mParent = new int[g.numV + 1];
         mEntryTime = new int[g.numV + 1];
         mExitTime = new int[g.numV + 1];
-        mParent =  new int[g.numV + 1];
         mFinished = false;
         for (int i = 0; i <= g.numV; i++) {
             mDiscovered[i] = mProcessed[i] = false;
@@ -90,49 +98,29 @@ public class FindingCycles {
         }
     }
 
-    /* call initDfs() before this function */
-    private void dfs(int vertex, Graph g) {
-        if (mFinished) return;
-
-        mDiscovered[vertex] = true;
-        mEntryTime[vertex] = ++mTime;
-        processVertexEarly(vertex);
-
-        Graph.Adjacent adj = g.adjacents[vertex];
-        while (adj != null) {
-            int end = adj.end;
-            if (!mDiscovered[end]) {
-                mParent[end] = vertex;
-                processEdge(vertex, end, g);
-                dfs(end, g);
-            } else if ((!mProcessed[end] && mParent[vertex] != end) || g.directed) {
-                processEdge(vertex, end, g);
-            }
-            if (mFinished) return;
-            adj = adj.next;
-        }
-        processVertexLate(vertex);
-        mExitTime[vertex] = ++mTime;
-        mProcessed[vertex] = true;
-    }
-
     private void processVertexEarly(int vertex) {}
 
-    private void processVertexLate(int vertex) {}
+    private void processVertexLate(int vertex) {
+        mSorted.push(vertex);
+    }
 
     private void processEdge(int vertex, int end, Graph g) {
-        if (mDiscovered[end] && mParent[vertex] != end) {
-            out("Cycle from " + vertex + " to " + end + "\n");
-            out("Path: ");
-            int p = vertex;
-            do {
-                out(p + "<-" + mParent[p]);
-                p = mParent[p];
-            } while (mParent[p] != end);
-            out("<-" + end);
+        if (classifyEdge(vertex, end) == EdgeType.BACK) {
+            outln("Not a DAG! Cycle detected " + vertex + " -> " + end);
             mFinished = true;
         }
     }
+
+    private EdgeType classifyEdge(int x, int y) {
+        if (mParent[y] == x) return EdgeType.TREE;
+        if (mDiscovered[y] && !mProcessed[y]) return EdgeType.BACK;
+        if (mProcessed[y] && mEntryTime[y] > mEntryTime[x]) return EdgeType.FORWARD;
+        if (mProcessed[y] && mEntryTime[y] < mEntryTime[x]) return EdgeType.CROSS;
+        outln("Warning: self loop " + x + ", " + y);
+        return EdgeType.TREE;
+    }
+
+    private enum EdgeType { TREE, BACK, FORWARD, CROSS };
 
     private class Vertex {
         int v;
@@ -142,4 +130,7 @@ public class FindingCycles {
             this.adj = adj;
         }
     }
+
+    private static void out(String str) {System.out.print(str);}
+    private static void outln(String str) {System.out.println(str);}
 }
