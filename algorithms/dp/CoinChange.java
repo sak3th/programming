@@ -44,9 +44,9 @@ public class CoinChange {
     static int rcc(int N, int[] s, int index) {
         if (N == 0) return 1;
         int num = 0;
-        for (int i = index; i < s.length; i++) {
-            if (s[i] <= N) {
-                num += rcc(N - s[i], s, i);
+        for (int j = index; j < s.length; j++) {
+            if (s[j] <= N) {
+                num += rcc(N - s[j], s, j);
             }
         }
         return num;

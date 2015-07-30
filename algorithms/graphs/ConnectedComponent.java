@@ -67,9 +67,9 @@ public class ConnectedComponent {
                 int end = adj.end;
                 if (!mProcessed[end] || g.directed) processEdge(vertex, end);
                 if (!mDiscovered[end]) {
+                    mParent[end] = vertex;
                     q.add(new Integer(end));
                     mDiscovered[end] = true;
-                    mParent[end] = vertex;
                 }
                 adj = adj.next;
             }
