@@ -30,7 +30,7 @@ public class QuickSort {
     private static int partition(int[] arr, int l, int h) {
         int p = h;
         int firstHigh = l;
-        for(int i = l; i < h; i++) {
+        for (int i = l; i < h; i++) {
             if (arr[i] < arr[p]) {
                 swap(arr, i, firstHigh);
                 firstHigh++;
