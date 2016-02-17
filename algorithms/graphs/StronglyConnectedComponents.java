@@ -61,7 +61,7 @@ public class StronglyConnectedComponents {
             ++components;
             System.out.print("Component " + components + ": ");
             scc[vertex] = components;
-            int t = 0;
+            int t;
             System.out.print(vertex + " ");
             while (!compStack.isEmpty() && (t = compStack.pop()) != vertex) {
                 System.out.print(t + " ");
@@ -155,12 +155,4 @@ public class StronglyConnectedComponents {
     int[] low, scc;
     Stack<Integer> compStack;
     int components;
-
-    class Ghaasi {
-        int adheda;
-
-        public Ghaasi(int adheda) {
-            this.adheda = adheda;
-        }
-    }
 }

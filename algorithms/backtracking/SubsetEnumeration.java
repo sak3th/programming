@@ -3,14 +3,17 @@ package backtracking;
 public class SubsetEnumeration {
 
     public static void main(String[] args) {
-        boolean[] a = new boolean[100];
-        backtrack(a, 0, 3);
+        new SubsetEnumeration().solve();
     }
 
-    private static boolean finished = false;
+    public void solve() {
+        int elements = 3;
+        boolean[] a = new boolean[2<<elements]; // 2^n subsets in a set
+        backtrack(a, 0, elements);
+    }
 
-    private static void backtrack(boolean[] a, int k, int input) {
-        if (reachedSolution(a, k, input)) {
+    private void backtrack(boolean[] a, int k, int input) {
+        if (isSolution(a, k, input)) {
             processSolution(a, k, input);
         } else {
             k = k + 1;
@@ -19,17 +22,16 @@ public class SubsetEnumeration {
                 a[k] = c;
                 // make move
                 backtrack(a, k, input);
-                if (finished) return;
                 // unmake move
             }
         }
     }
 
-    private static boolean reachedSolution(boolean[] a, int k, int input) {
+    private boolean isSolution(boolean[] a, int k, int input) {
         return (k == input);
     }
 
-    private static void processSolution(boolean[] a, int k, int input) {
+    private void processSolution(boolean[] a, int k, int input) {
         System.out.print("{");
         for (int i = 1; i <= k; i++) {
             if (a[i]) {
@@ -39,7 +41,7 @@ public class SubsetEnumeration {
         System.out.println(" }");
     }
 
-    private static boolean[] constructCandidates(boolean[] a, int k, int input) {
+    private boolean[] constructCandidates(boolean[] a, int k, int input) {
         return new boolean[] { false, true };
     }
 }

@@ -1,13 +1,20 @@
 package datastructures;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class DataStructuresTests {
 
+
     public static void main(String[] args) {
         //testStack();
         //testQueue();
-        testHeapSort();
+        //testHeapSort();
+        int[] a = new int[10];
+        for (int i = 0; i < 10; a[i] = i++);
+        System.out.println(Arrays.toString(a));
+        new PQ().swap(2, 3, a);
+        System.out.println(Arrays.toString(a));
     }
 
     static void testStack() {
@@ -47,4 +54,11 @@ public class DataStructuresTests {
     
     static void out(String str) { System.out.println(str); }
     static void outln(String str) { System.out.println(str); }
+}
+
+class PQ {
+    //int[] a = new int[10];
+    //PQ() { for (int i = 0; i < 10; a[i] = i++); }
+    int[] swap(int p, int q, int[] a) { int tmp = a[p]; a[p] = a[q]; a[q] = tmp; return a; }
+    //@Override public String toString() { return Arrays.toString(a); }
 }

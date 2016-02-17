@@ -10,7 +10,7 @@ public class EditDistance {
 
     public static void main(String[] args) {
         char[] x = "thou shall not".toCharArray();
-        char[] y = "you should ntoto".toCharArray();
+        char[] y = "you should not".toCharArray();
         //char[] x = "saketh".toCharArray();
         //char[] y = "sakeht".toCharArray();
         long now = System.currentTimeMillis();

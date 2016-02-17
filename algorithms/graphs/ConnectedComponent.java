@@ -63,7 +63,7 @@ public class ConnectedComponent {
             mProcessed[vertex] = true;
 
             Graph.Adjacent adj = g.adjacents[vertex];
-            while(adj != null) {
+            for ( ; adj != null; adj = adj.next) {
                 int end = adj.end;
                 if (!mProcessed[end] || g.directed) processEdge(vertex, end);
                 if (!mDiscovered[end]) {
@@ -71,7 +71,6 @@ public class ConnectedComponent {
                     q.add(new Integer(end));
                     mDiscovered[end] = true;
                 }
-                adj = adj.next;
             }
             processVertexLate(vertex);
         }

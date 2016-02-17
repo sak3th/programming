@@ -4,19 +4,20 @@ package backtracking;
 public class NQueens {
 
     public static void main(String[] args) {
-        nqueens(8);
+        new NQueens().solve(4);
     }
 
-    static int numSolutions = 0;
-    private static void nqueens(int n) {
+    static int numSolutions;
+    public void solve(int n) {
+        numSolutions = 0;
         int[][] a = new int[n][n];
         backtrack(a, -1);
         System.out.println("Total num of solutions: " + numSolutions);
     }
 
-    private static void backtrack(int[][] a, int k) {
+    private void backtrack(int[][] a, int k) {
         if (isSolution(a, k)) {
-            //processSolution(a);
+            processSolution(a);
             numSolutions++;
         } else {
             k = k + 1;
@@ -31,7 +32,7 @@ public class NQueens {
         }
     }
 
-    private static void makeMove(int[][] a, int k, int y) {
+    private void makeMove(int[][] a, int k, int y) {
         for (int j = 0; j < a.length; j++) {
             a[k][j] += 1;
         }
@@ -59,7 +60,7 @@ public class NQueens {
         a[k][y] = 0;
     }
 
-    private static void unmakeMove(int[][] a, int k, int y) {
+    private void unmakeMove(int[][] a, int k, int y) {
         for (int j = 0; j < a.length; j++) {
             a[k][j] -= 1;
         }
@@ -87,7 +88,7 @@ public class NQueens {
         a[k][y] = 0;
     }
 
-    private static int[] constructCandidates(int[][] a, int k) {
+    private int[] constructCandidates(int[][] a, int k) {
         // TODO optimize to exclude symmetrical duplicates
         int unattacked = 0;
         for (int i = 0; i < a.length; i++) {
@@ -107,7 +108,7 @@ public class NQueens {
         return c;
     }
 
-    private static void processSolution(int[][] a) {
+    private void processSolution(int[][] a) {
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a.length; j++) {
                 System.out.print((a[i][j] <= 0 ? " #" : " _" ));
@@ -117,7 +118,7 @@ public class NQueens {
         System.out.println();
     }
 
-    private static boolean isSolution(int[][] a, int k) {
+    private boolean isSolution(int[][] a, int k) {
         return k + 1 == a.length;
     }
 }

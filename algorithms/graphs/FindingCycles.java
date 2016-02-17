@@ -7,7 +7,7 @@ public class FindingCycles {
 
     public static void main(String[] args) {
         HashMap<String, Integer> map;
-        Graph g = new Graph(9, false);
+        Graph g = new Graph(10, false);
         g.addEdge(1, 2, false);
         g.addEdge(2, 3, false);
         g.addEdge(3, 4, false);
@@ -16,7 +16,8 @@ public class FindingCycles {
         g.addEdge(6, 7, false);
         g.addEdge(7, 8, false);
         g.addEdge(7, 9, false);
-        //g.addEdge(8, 9, false);
+        g.addEdge(1, 10, false);
+        g.addEdge(8, 9, false);
         FindingCycles fc = new FindingCycles();
         fc.findCycle(g);
     }
@@ -70,6 +71,7 @@ public class FindingCycles {
                 int end = vertex.adj.end;
                 if (!mDiscovered[end]) {
                     mParent[end] = vertex.v;
+                    System.out.println("!d " + vertex.v + " -> " + end);
                     processEdge(vertex.v, end, g);
 
                     stack.push(new Vertex(end, g.adjacents[end]));
@@ -77,6 +79,7 @@ public class FindingCycles {
                     mEntryTime[end] = ++mTime;
                     processVertexEarly(end);
                 } else if ((!mProcessed[end] && mParent[vertex.v] != end) || g.directed) {
+                    System.out.println("!p " + vertex.v + " -> " + end);
                     processEdge(vertex.v, end, g);
                 }
                 vertex.adj = vertex.adj.next;
